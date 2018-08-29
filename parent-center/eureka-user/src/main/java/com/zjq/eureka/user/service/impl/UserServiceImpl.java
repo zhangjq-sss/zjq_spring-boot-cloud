@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.alibaba.fastjson.JSON;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zjq.euraka_domain.user.User;
 import com.zjq.eureka.user.config.DbContextHolder.DbType;
 import com.zjq.eureka.user.config.ReadOnlyConnection;
 import com.zjq.eureka.user.dao.UserMapper;
+import com.zjq.eureka.user.redis.RedisService;
 import com.zjq.eureka.user.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired 
 	private UserMapper userMapper;
+	
+	@Autowired
+	private RedisService redisService;
 
 	@HystrixCommand(fallbackMethod = "hiError")
 	@Override
@@ -55,6 +60,8 @@ public class UserServiceImpl implements UserService {
 			user.setVersion(0);
 			userMapper.insert(user);
 			id = user.getId();
+			//存缓存
+			redisService.set(id+"", JSON.toJSON(user).toString());
 		}
 		return id;
 	}
