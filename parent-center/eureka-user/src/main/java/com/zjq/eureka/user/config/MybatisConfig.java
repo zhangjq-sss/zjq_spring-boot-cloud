@@ -17,11 +17,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zjq.eureka.user.config.DbContextHolder.DbType;
 
 @Configuration
 @MapperScan("com.zjq.eureka.user.dao")
+@EnableTransactionManagement
 public class MybatisConfig {
 	
 	@Value("${druid.type}")

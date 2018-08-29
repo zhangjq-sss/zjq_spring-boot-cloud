@@ -23,7 +23,7 @@
     delete from t_users
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zjq.euraka_domain.user.User">
+  <insert id="insert" parameterType="com.zjq.euraka_domain.user.User" useGeneratedKeys="true" keyProperty="id">
     insert into t_users (id, user_name, password, 
       create_time, version, last_update_time, 
       deleted)
@@ -31,7 +31,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
       #{deleted,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.zjq.euraka_domain.user.User">
+  <insert id="insertSelective" parameterType="com.zjq.euraka_domain.user.User" useGeneratedKeys="true" keyProperty="id">
     insert into t_users
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

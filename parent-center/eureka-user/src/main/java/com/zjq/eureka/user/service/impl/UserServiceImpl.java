@@ -1,11 +1,16 @@
 package com.zjq.eureka.user.service.impl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zjq.euraka_domain.user.User;
+import com.zjq.eureka.user.config.DbContextHolder.DbType;
+import com.zjq.eureka.user.config.ReadOnlyConnection;
 import com.zjq.eureka.user.dao.UserMapper;
 import com.zjq.eureka.user.service.UserService;
 
@@ -34,14 +39,24 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
+	@ReadOnlyConnection(DbType.READ1)
 	public Object getById(Integer id) {
 		return userMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
+	@Transactional
 	public int insert(Object object) {
+		int id = -1;
 		User user = (User) object;
-		return userMapper.insert(user);
+		if (checkoutInsert(user)) {
+			user.setCreateTime(new Date());
+			user.setDeleted(false);
+			user.setVersion(0);
+			userMapper.insert(user);
+			id = user.getId();
+		}
+		return id;
 	}
 
 	@Override
@@ -59,19 +74,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean checkoutInsert(Object object) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean checkoutUpdate(Object object) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean checkoutDelete(Object object) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	
