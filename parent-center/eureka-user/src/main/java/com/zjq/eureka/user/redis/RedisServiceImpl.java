@@ -45,7 +45,14 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public boolean expire(final String key, long expire) {
-        return redisTemplate.expire(key, expire, TimeUnit.SECONDS);
+    	boolean result = redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection connection) throws DataAccessException {
+            	RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+                return connection.expire(serializer.serialize(key), expire);
+            }
+        });
+        return result;
     }
 
     @Override
