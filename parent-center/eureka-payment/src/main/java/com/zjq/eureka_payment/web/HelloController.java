@@ -22,6 +22,15 @@ public class HelloController {
 	@Value("${server.port}")
     String port;
 	
+	@Value("${address}")
+    String address;
+	
+	@Value("${password}")
+    String password;
+	
+	@Value("${spring.source.password}")
+    String sourcePassword;
+	
 	@RequestMapping(value="hello", method=RequestMethod.GET)
 	public String index() {
 		ServiceInstance instance = client.getLocalServiceInstance();
@@ -41,5 +50,10 @@ public class HelloController {
 		}
 	    System.out.println(params);    
 		return "success";
+	}
+	
+	@RequestMapping(value="test_env")
+	public String testEnv(HttpServletRequest request) {
+		return address + "====" + password + "------" + sourcePassword;
 	}
 }
