@@ -1,6 +1,8 @@
 package com.zjq.eureka.user.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +21,14 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(value = "用户-调用第三方和回调接API")
 @RestController
+@RefreshScope
 public class HelloConsumer {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Value("${version}")
+    String version;
 	
 	@ApiOperation(value = "测试支付第三方", notes = "测试-支付第三方调用",  response = String.class)
 	@RequestMapping(value="/user", method=RequestMethod.GET)
@@ -52,4 +58,9 @@ public class HelloConsumer {
 		return resultBody;
 	}
 	
+	@ApiOperation(value = "测试配置文件刷新", notes = "测试配置文件刷新",  response = String.class)
+	@RequestMapping(value="/version", method=RequestMethod.GET)
+	public String test_version() {
+		return version;
+	}
 }

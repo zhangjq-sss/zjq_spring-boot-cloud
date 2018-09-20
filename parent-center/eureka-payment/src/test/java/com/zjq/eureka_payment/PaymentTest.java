@@ -17,6 +17,11 @@ public class PaymentTest extends TestCase {
 
 	@Test
 	public void testEnvironmentProperties() {
-		System.out.println("----------------" + stringEncryptor.encrypt("199248"));
+		//jasypt方式
+		System.out.println("----------------" + stringEncryptor.encrypt("123456"));
+		System.out.println("----------------" + stringEncryptor.encrypt("root"));
+		System.out.println("----------------" + stringEncryptor.encrypt("guest"));
+		//对称加密方式
+		//对称请求加密地址 http://localhost:2222/encrypt 解密地址 http://localhost:2222/decrypt 
 	}
 }

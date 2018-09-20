@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired 
 	private UserMapper userMapper;
 	
-	@Autowired
-	private RedisService redisService;
+//	@Autowired
+//	private RedisService redisService;
 
 	@HystrixCommand(fallbackMethod = "hiError")
 	@Override
@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService {
 			user.setVersion(0);
 			userMapper.insert(user);
 			id = user.getId();
-			//存缓存
-			redisService.set(id+"", JSON.toJSON(user).toString());
+//			//存缓存
+//			redisService.set(id+"", JSON.toJSON(user).toString());
 		}
 		return id;
 	}

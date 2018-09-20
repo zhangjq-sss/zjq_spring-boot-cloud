@@ -107,14 +107,24 @@
 			<version>${fastjson.version}</version>
 		</dependency>
         <!--  redis -->
-        <dependency>
+<!--         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
+        </dependency> -->
         <dependency>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-bus-amqp</artifactId>
 	</dependency>
+	<dependency>
+   			<groupId>org.springframework.cloud</groupId>
+   			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.github.ulisesbocchio</groupId>
+    		<artifactId>jasypt-spring-boot-starter</artifactId>
+    		<version>1.16</version>
+		</dependency>
 	</dependencies>
 	
 <!-- 	<build>
