@@ -11,3 +11,7 @@ user：redis和redis集群，mybatis+mysql多数据源，
 priduct：产品
 hystrix：容错保护机制
 gateway：网关
+
+3.注册中心出现UNKNOWN错误
+原因：eureka.client.healthcheck.enabled=true放入了bootstrap.properties中导致提前检查
+解决方案：放入application.properties即可解决
