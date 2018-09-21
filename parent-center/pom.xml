@@ -113,6 +113,7 @@
     <module>eureka-config</module>
     <module>euraka-domain</module>
     <module>eureka-stream</module>
+    <module>eureka-server-a</module>
   </modules>
 	<url>http://maven.apache.org</url>
 </project>
