@@ -112,6 +112,7 @@
     <module>eureka-gateway</module>
     <module>eureka-config</module>
     <module>euraka-domain</module>
+    <module>eureka-stream</module>
   </modules>
 	<url>http://maven.apache.org</url>
 </project>
