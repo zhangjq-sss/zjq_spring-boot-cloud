@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSON;
+import com.codingapi.tx.annotation.ITxTransaction;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zjq.euraka_domain.user.User;
 import com.zjq.eureka.user.config.DbContextHolder.DbType;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService ,ITxTransaction {
 	
 	@Autowired
 	private RestTemplate restTemplate;

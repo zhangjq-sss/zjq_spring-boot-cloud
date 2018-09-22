@@ -7,13 +7,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.zjq.eureka.user.config.DbContextHolder.DbType;
 
 @Component
 @Aspect
-public class DataSourceAspect {
+public class DataSourceAspectDis {
 	
 	@Pointcut("@annotation(com.zjq.eureka.user.config.ReadOnlyConnection)")
 	public void dataSourcePointcut() {

@@ -13,6 +13,8 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.zjq.eureka_payment.service.DemoService;
 @RestController
 public class HelloController {
 	
@@ -30,6 +32,9 @@ public class HelloController {
 	
 	@Value("${spring.source.password}")
     String sourcePassword;
+	
+	@Autowired
+	private DemoService demoService;
 	
 	@RequestMapping(value="hello", method=RequestMethod.GET)
 	public String index() {
@@ -55,5 +60,11 @@ public class HelloController {
 	@RequestMapping(value="test_env")
 	public String testEnv(HttpServletRequest request) {
 		return address + "====" + password + "------" + sourcePassword;
+	}
+	
+	@RequestMapping(value="test_lcn")
+	public String testEnv(String name) {
+		demoService.save();
+		return "success";
 	}
 }

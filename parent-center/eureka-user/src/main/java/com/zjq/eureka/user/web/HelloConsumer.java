@@ -63,4 +63,20 @@ public class HelloConsumer {
 	public String test_version() {
 		return version;
 	}
+	
+	@RequestMapping(value="/insert_lcn", method=RequestMethod.GET)
+	public int insert() {
+		User user = new User();
+		user.setUserName("lcn");
+		user.setPassword("111111");
+		return userService.insert(user);
+	}
+	
+	@RequestMapping(value="/insert", method=RequestMethod.GET)
+	public int insertGet() {
+		User user = new User();
+		user.setUserName("lcn");
+		user.setPassword("111111");
+		return userService.insert(user);
+	}
 }
