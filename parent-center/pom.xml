@@ -114,6 +114,7 @@
     <module>euraka-domain</module>
     <module>eureka-stream</module>
     <module>eureka-server-a</module>
+    <module>eureka-kafka</module>
   </modules>
 	<url>http://maven.apache.org</url>
 </project>
