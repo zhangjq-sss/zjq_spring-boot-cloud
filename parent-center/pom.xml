@@ -115,6 +115,7 @@
     <module>eureka-stream</module>
     <module>eureka-server-a</module>
     <module>eureka-kafka</module>
+    <module>eureka-canal</module>
   </modules>
 	<url>http://maven.apache.org</url>
 </project>
