@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.zjq.euraka_domain.common.RequestContent;
 import com.zjq.euraka_domain.common.ResultBody;
 import com.zjq.euraka_domain.user.User;
+import com.zjq.eureka.user.aspect.SpringLog;
 import com.zjq.eureka.user.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -78,5 +79,12 @@ public class HelloConsumer {
 		user.setUserName("lcn");
 		user.setPassword("111111");
 		return userService.insert(user);
+	}
+	
+	@SpringLog(requestUrl="/testAspect",action="测试日志注解",title="注解")
+	@RequestMapping(value="/testAspect", method=RequestMethod.GET)
+	public String testAspect() {
+		
+		return "success";
 	}
 }
