@@ -114,4 +114,9 @@
       deleted = #{deleted,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="listAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_users
+  </select>
 </mapper>

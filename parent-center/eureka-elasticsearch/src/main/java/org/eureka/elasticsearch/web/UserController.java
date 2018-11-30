@@ -2,7 +2,7 @@ package org.eureka.elasticsearch.web;
 
 import java.util.Date;
 
-import org.eureka.elasticsearch.domain.User;
+import org.eureka.elasticsearch.domain.EsUser;
 import org.eureka.elasticsearch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ public class UserController {
      */
     @RequestMapping("/add")
     public String add() {
-        User user = new User();
+        EsUser user = new EsUser();
         user.setId(3l);
         user.setUserName("hello");
         user.setPassword("123456");
@@ -40,10 +40,20 @@ public class UserController {
      * @return
      */
     @RequestMapping("/delete")
-    public String delete() {
-    	User user = new User();
-        user.setId(3l);
+    public String delete(Long id) {
+    	EsUser user = new EsUser();
+        user.setId(id);
         userService.delete(user);
+        return "success";
+    }
+    
+    /**
+     * 删除所有
+     * @return
+     */
+    @RequestMapping("/deleteAll")
+    public String delete() {
+        userService.deleteAll();
         return "success";
     }
  
@@ -53,22 +63,33 @@ public class UserController {
      */
     @RequestMapping("/update")
     public String update() {
-    	User user = userService.queryUserBYId(3l);
+    	EsUser user = userService.queryUserBYId(3l);
     	user.setUserName("word");
     	userService.update(user);
         return "success";
     }
+    
     /**
      * 查询
      * @return
      */
     @RequestMapping("/query")
     public String query(Long id) {
-    	User user = userService.queryUserBYId(id);
+    	EsUser user = userService.queryUserBYId(id);
     	if (user==null) {
 			return "该id不存在！";
 		}
     	String usernfo = user.toString();
         return usernfo;
+    }
+    
+    /**
+     * 同步es用户
+     * @return
+     */
+    @RequestMapping("/sychUserEs")
+    public String sychUserEs() {
+    	userService.sychUserEs();
+        return "success";
     }
 }

@@ -1,14 +1,18 @@
 package org.eureka.elasticsearch.service;
 
-import org.eureka.elasticsearch.domain.User;
+import org.eureka.elasticsearch.domain.EsUser;
 
 public interface UserService {
 
-	Long save(User user);
+	Long save(EsUser user);
 	
-	boolean delete(User user);
+	boolean delete(EsUser user);
 	
-	boolean update(User user);
+	boolean update(EsUser user);
 	
-	User queryUserBYId(Long id);
+	EsUser queryUserBYId(Long id);
+	
+	boolean sychUserEs();
+	
+	boolean deleteAll();
 }

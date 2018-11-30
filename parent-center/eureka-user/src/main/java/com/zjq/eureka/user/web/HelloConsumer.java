@@ -46,6 +46,15 @@ public class HelloConsumer {
 		return resultBody;
 	}
 	
+	@ApiOperation(value = "查询所有的用户", notes = "查询用户所有数据",  response = Object.class)
+	@RequestMapping(value="/listAll")
+	public ResultBody listAll() {
+		ResultBody resultBody = new ResultBody();
+		resultBody.success();
+		resultBody.setData(userService.listAll());
+		return resultBody;
+	}
+	
 	@ApiOperation(value = "用户信息插入", notes = "用户信息插入",  response = ResultBody.class)
 	@ApiImplicitParams({
         @ApiImplicitParam(paramType="body", name = "userBody", value = "用户基本信息", required = true,  dataType = "RequestContent")

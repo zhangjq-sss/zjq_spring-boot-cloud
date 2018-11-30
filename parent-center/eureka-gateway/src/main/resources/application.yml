@@ -22,3 +22,6 @@ zuul:
     eureka-user: 
       path: /user/**
       serviceId: eureka-user
+    eureka-elasticsearch: 
+      path: /es-api/**
+      serviceId: eureka-elasticsearch

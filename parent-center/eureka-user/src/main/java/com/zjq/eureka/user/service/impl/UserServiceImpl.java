@@ -1,6 +1,7 @@
 package com.zjq.eureka.user.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,6 +96,11 @@ public class UserServiceImpl implements UserService ,ITxTransaction {
 	public boolean checkoutDelete(Object object) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public List<User> listAll() {
+		return userMapper.listAll();
 	}
 	
 	
