@@ -41,5 +41,11 @@ ELK
 与logstash整合：日志输出
 与zipkin整合：提供ui组件更直观跟踪和分析
 
+11.用户模块新增日志注解功能
+
+12.canal同步工具和Spring boot data jpa集成Es搜索引擎
+a.t_users数据同步到es上去
+b.增加canal监控t_users数据的变化，然后同步到es上去
+
 
 
