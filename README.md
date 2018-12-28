@@ -48,4 +48,10 @@ a.t_users数据同步到es上去
 b.增加canal监控t_users数据的变化，然后同步到es上去
 
 
+启动流程
+注册中心：eureka-server/eureka-server-a
+配置文件中心：rabbitmq刷新配置文件/eureka-config
+网关：eureka-gateway
+启动eureka-elasticsearch需要启动：canal/elasticsearch（主从-版本2.4.1）/插件head
+
 
