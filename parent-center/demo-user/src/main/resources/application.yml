@@ -1,0 +1,80 @@
+spring:
+  sleuth:
+    sampler:
+      #链路采集率, 默认为10%
+      percentage: 0.1
+  zipkin:
+    #zipkin地址
+    base-url: http://localhost:9411
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        #服务健康检查url
+        healthCheckPath: ${server.servlet.context-path}/health
+        #服务健康检查频率
+        healthCheckInterval: 5s
+        instance-id: ${spring.application.name}-${server.port}
+        tags: qg=xqz, baz
+        prefer-ip-address: true
+        #健康检查失败多长时间后，取消注册
+        health-check-critical-timeout: 5s
+      config:
+        format: yaml
+        enabled: true
+        data-key: data
+        prefix: config
+        name: ${spring.application.name}/${tag}
+  rabbitmq:
+    username: ENC(GUsLCYdW+gcOhlxhtVtfvw==)
+    password: ENC(GUsLCYdW+gcOhlxhtVtfvw==)
+    host: localhost
+    port: 5672
+feign:
+  hystrix:
+    enabled: true
+tm:
+  manager:
+    url: http://127.0.0.1:8899/tx/manager/
+
+druid:
+  type: com.alibaba.druid.pool.DruidDataSource
+  read1:
+    connection-test-query: '"SELECT 1"'
+    driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 5
+    max-active: 100
+    min-idle: 1
+    password: ENC(kWjAkZsxK64IimgRoMSVmg==)
+    test-on-borrow: true
+    url: jdbc:mysql://localhost:3340/test?zeroDateTimeBehavior=round&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: ENC(en5bOBNETf6FCIgP4pHRlw==)
+  read2:
+    connection-test-query: '"SELECT 1"'
+    driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 5
+    max-active: 100
+    min-idle: 1
+    password: ENC(kWjAkZsxK64IimgRoMSVmg==)
+    test-on-borrow: true
+    url: jdbc:mysql://localhost:3340/test?zeroDateTimeBehavior=round&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: ENC(en5bOBNETf6FCIgP4pHRlw==)
+  write:
+    connection-test-query: '"SELECT 1"'
+    driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 5
+    max-active: 100
+    min-idle: 1
+    password: ENC(kWjAkZsxK64IimgRoMSVmg==)
+    test-on-borrow: true
+    url: jdbc:mysql://localhost:3339/test?zeroDateTimeBehavior=round&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: ENC(en5bOBNETf6FCIgP4pHRlw==)
+mybatis:
+  mapperLocations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.zjq.user.dao
+
+version: 1.0
+server:
+  servlet:
+    context-path: /user

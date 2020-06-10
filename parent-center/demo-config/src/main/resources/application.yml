@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-config
+server:
+  port: 2222
+encrypt:
+  key: zjq

@@ -1,0 +1,17 @@
+---
+spring:
+  kafka:
+    producer:
+      batch-size: 16384 # 每次批量发送消息的数量
+      retries: 0
+      buffer-memory: 33554432
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer # 指定生产者消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 指定生产者消息key和消息体的编解码方式
+    bootstrap-servers: 192.168.153.79:9092   # 指定kafka 代理地址，可以多个
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer # 指定消费者消息key和消息体的编解码方式
+      group-id: test-consumer-group # 指定默认消费者group id
+      auto-offset-reset: earliest
+      auto-commit-interval: 100
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer # 指定消费者消息key和消息体的编解码方式

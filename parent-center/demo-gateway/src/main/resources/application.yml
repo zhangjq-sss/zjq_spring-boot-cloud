@@ -1,0 +1,27 @@
+server: 
+    port: 5010
+spring: 
+    application: 
+      name: service-gateway
+
+service: 
+    client: 
+      serviceUrl: 
+         defaultZone: http://localhost:1111/service/
+zuul: 
+  host: 
+    maxTotalConnections: 2048
+    maxPerRouteConnections: 1024
+  routes: 
+    service-payment: 
+      path: /payment/**
+      serviceId: service-payment
+    service-product: 
+      path: /product/**
+      serviceId: service-product
+    service-user: 
+      path: /user/**
+      serviceId: service-user
+    service-elasticsearch: 
+      path: /es-api/**
+      serviceId: service-elasticsearch

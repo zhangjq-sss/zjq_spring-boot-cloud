@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: service-product
+server:
+  port: 4010
+#根密码
+jasypt:
+  encryptor:
+    password: zjq

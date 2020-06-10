@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-user
+server:
+  port: 3010
+jasypt:
+  encryptor:
+    password: zjq

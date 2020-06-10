@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-payment
+server:
+  port: 2010
+jasypt:
+  encryptor:
+    password: zjq  #根密码

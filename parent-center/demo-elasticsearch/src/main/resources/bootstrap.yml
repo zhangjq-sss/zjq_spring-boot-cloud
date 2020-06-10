@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: service-elasticsearch
+server:
+  port: 9010
